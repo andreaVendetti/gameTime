@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="~{template::bootstrap-head}"></head>
+	<body>
+		<div class="container">
+			
+			<h3 class="display-4 my-3">Utenti</h3>
+			
+			<div class="alert alert-warning" th:if="${utenti.size() == 0}">
+				<h5 class="alert-heading">La lista degli sviluppatori &egrave; vuota</h5>
+				<hr>
+				<a class="btn btn-primary" th:href="@{/gametime/utenti/insert}">Aggiungi un utente</a>
+			</div>
+			<div th:unless="${utenti.size() == 0}">
+				<a class="btn btn-primary" th:href="@{/gametime/utenti/insert}">Aggiungi un utente</a>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nome</th>
+							<th>Cognome</th>
+							<th>Eta</th>
+							<th>Username</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="utente : ${utenti}">
+							<td th:text="${utente.id}"></td>
+							<td th:text="${utente.nome}"></td>
+							<td th:text="${utente.cognome}"></td>
+							<td th:text="${utente.eta}"></td>
+							<td th:text="${utente.username}"></td>
+							<td>
+								<a class="btn btn-warning btn-sm" th:href="@{/gametime/utenti/update/{id}(id=${utente.id})}">Aggiorna</a>
+								<a class="btn btn-danger btn-sm" th:href="@{/gametime/utenti/delete/{id}(id=${utente.id})}">Cancella</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script th:replace="~{template::bootstrap-script}"></script>
+	</body>
+</html>

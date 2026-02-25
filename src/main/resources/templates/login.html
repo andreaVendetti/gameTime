@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="~{template::bootstrap-head}">
+		<meta charset="UTF-8">
+		<title>GameTime</title>
+	</head>
+	<body>
+		<div class="container">
+			<form th:action="@{/login}" th:object="${utente}" method="post">
+				
+				<div>
+					<label class="form-label">Email</label>
+					<br>
+					<input class="form-control" type="email" th:field="*{email}" required>
+				</div>	
+				<div>
+					<label class="form-label">Password</label>
+					<br>
+					<input class="form-control" type="password" name="password" required>
+				</div>
+				
+				<button class="btn btn-success" type="submit">Accedi</button>
+				<hr>
+				<br>
+				<div class="alert alert-secondary">
+					<label>Non sei registrato? Fallo ora!</label>
+					<strong>
+						<a class="btn btn-success" th:href="@{/gametime/utenti/insert}">Registrati</a>
+					</strong>
+				</div>
+			</form>
+		</div>
+		<script th:replace="~{template::bootstrap-script}"></script>
+	</body>
+</html>

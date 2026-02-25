@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="~{template::bootstrap-head}">
+		<meta charset="UTF-8">
+		<title>GameTime</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="alert alert-danger">
+				<h5 class="alert-heading">
+					Sei sicuro di voler cancellare
+					<strong th:text="${utente.username}"></strong>
+					dalla tabella degli utenti? 
+				</h5>
+				<hr>
+				<form th:object="${utente}" th:action="@{/gametime/utenti/delete}" method="post">
+					<input type="hidden" th:field="*{id}">
+					<button class="btn btn-danger" type="submit">Elimina</button>
+					<hr>
+					<a class="btn btn-secondary" th:href="@{/gametime/utenti}">Annulla</a>
+				</form>
+			</div>
+		</div>
+		<script th:replace="~{template::bootstrap-script}"></script>
+	</body>
+</html>

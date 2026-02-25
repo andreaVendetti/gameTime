@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="~{template::bootstrap-head}">
+		<meta charset="UTF-8">
+		<title>GameTime</title>
+	</head>
+	<body>
+		
+		<div class="container">
+			<div class="d-flex justify-content-center align-items-center vh-100">
+  				<div class="bg-white bg-opacity-75 p-4 p-md-5 rounded shadow-sm w-100" style="max-width: 400px;">
+					
+					<h2 class="alert-heading">Benvenuto su GameTime!</h2>	
+					<hr>
+					<h3>Cosa vuoi fare?</h3>
+					<a class="btn btn-danger" th:href="@{/gametime/videogiochi}">Guarda la lista dei videogiochi</a>
+					<br>
+					<a class="btn btn-info" th:href="@{/gametime/utenti/update/{id}(id=${utente.id})}">Visualizza il tuo account</a>					
+				</div>	
+			</div>
+		</div>
+		<script th:replace="~{template::bootstrap-script}"></script>
+	</body>
+</html>

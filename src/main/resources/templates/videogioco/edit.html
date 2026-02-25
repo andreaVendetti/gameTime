@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="~{template::bootstrap-head}">
+		<meta charset="UTF-8">
+		<title>GameTime</title>
+	</head>
+	<body>
+		<div class="container">
+			<form th:action="@{/gametime/videogiochi/save}" th:object="${videogioco}" method="post">
+				<input type="hidden" th:field="*{id}">
+				<div class="mb-3">
+					<label class="form-label">Titolo</label>
+					<input class="form-control" th:field="*{titolo}" required>
+				</div>		
+				<div class="mb-3">
+					<label class="form-label">Genere</label>
+					<input class="form-control" th:field="${videogioco.genere}" required>
+				</div>		
+				<div class="mb-3">
+					<label class="form-label">Data di uscita</label>
+					<input class="form-control" th:field="*{uscita}" th:type="date" required>
+				</div>		
+				<div class="mb-3">
+					<label class="form-label">Casa Editrice</label>
+					<input class="form-control" th:field="*{casa}" required>
+				</div>	
+				<button class="btn btn-primary" type="submit">Aggiungi</button>	
+				<a class="btn btn-secondary" th:href="@{/gametime/videogiochi}">Annulla</a>
+			</form>
+		</div>
+		<script th:replace="~{template::bootstrap-script}"></script>
+	</body>
+</html>

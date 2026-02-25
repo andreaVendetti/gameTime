@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="~{template::bootstrap-head}">
+		<meta charset="UTF-8">
+		<title>GameTime</title>
+	</head>
+	<body>
+		<div class="container">	
+			<div th:if="${videogames.size() == 0}" class="alert alert-warning">
+				<h3 class="alert-heading">La lista dei videogiochi è vuota!</h3>
+				<hr>
+				<a class="btn btn-primary" th:href="@{/gametime/videogiochi/insert}">Aggiungi</a>				
+			</div>
+			<div th:unless="${videogames.size() == 0}">
+				<a class="btn btn-primary" th:href="@{/gametime/videogiochi/insert}">Aggiungi un Videogioco</a>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Titolo</th>
+							<th>Genere</th>
+							<th>Data Di Uscita</th>
+							<th>Casa Editrice</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="videogioco : ${videogames}">
+							<td th:text="${videogioco.id}"></td>
+							<td th:text="${videogioco.titolo}"></td>
+							<td th:text="${videogioco.genere}"></td>
+							<td th:text="${videogioco.uscita}"></td>
+							<td th:text="${videogioco.casa}"></td>
+							<td>
+								<a class="btn btn-warning btn-sm" th:href="@{/gametime/videogiochi/update/{id}(id=${videogioco.id})}">Modifica</a>						
+								<a class="btn btn-danger btn-sm" th:href="@{/gametime/videogiochi/delete/{id}(id=${videogioco.id})}">Elimina</a>						
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script th:replace="~{template::bootstrap-script}"></script>
+	</body>
+</html>
