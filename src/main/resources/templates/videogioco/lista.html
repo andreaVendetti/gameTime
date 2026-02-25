@@ -9,7 +9,9 @@
 			<div th:if="${videogames.size() == 0}" class="alert alert-warning">
 				<h3 class="alert-heading">La lista dei videogiochi è vuota!</h3>
 				<hr>
-				<a class="btn btn-primary" th:href="@{/gametime/videogiochi/insert}">Aggiungi</a>				
+				<div th:if="${utente.admin == 0}">
+					<a class="btn btn-primary" th:href="@{/gametime/videogiochi/insert}">Aggiungi</a>									
+				</div>
 			</div>
 			<div th:unless="${videogames.size() == 0}">
 				<a class="btn btn-primary" th:href="@{/gametime/videogiochi/insert}">Aggiungi un Videogioco</a>
