@@ -33,6 +33,15 @@ public class TempoDiGioco {
 
 	@Column(name = "tempo_di_gioco")
 	private LocalDateTime dateTime;
+	
+	public TempoDiGioco() {}
+	
+	public TempoDiGioco(int id, Utente utente, Videogioco videogioco, LocalDateTime tempo) {
+		this.id = id;
+		this.utente = utente;
+		this.videogioco = videogioco;
+		this.dateTime = tempo;
+	}
 
 	public int getId() {
 		return id;

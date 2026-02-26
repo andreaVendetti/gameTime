@@ -85,4 +85,6 @@ public class UtenteController {
 		service.deleteUtente(utente.getId());
 		return new ModelAndView("redirect:/gametime/utenti");
 	}
+	
+	
 }

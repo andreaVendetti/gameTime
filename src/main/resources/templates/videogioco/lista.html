@@ -9,12 +9,14 @@
 			<div th:if="${videogames.size() == 0}" class="alert alert-warning">
 				<h3 class="alert-heading">La lista dei videogiochi è vuota!</h3>
 				<hr>
-				<div th:if="${utente.admin == 0}">
+				<div th:if="${utente.admin == 0 || utente.admin == 1}">
 					<a class="btn btn-primary" th:href="@{/gametime/videogiochi/insert}">Aggiungi</a>									
 				</div>
 			</div>
 			<div th:unless="${videogames.size() == 0}">
-				<a class="btn btn-primary" th:href="@{/gametime/videogiochi/insert}">Aggiungi un Videogioco</a>
+				<div th:if="${utente.admin == 0 || utente.admin == 1}">			
+			    	<a class="btn btn-primary" th:href="@{/gametime/videogiochi/insert}">Aggiungi un Videogioco</a>
+				</div>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -34,8 +36,13 @@
 							<td th:text="${videogioco.uscita}"></td>
 							<td th:text="${videogioco.casa}"></td>
 							<td>
-								<a class="btn btn-warning btn-sm" th:href="@{/gametime/videogiochi/update/{id}(id=${videogioco.id})}">Modifica</a>						
-								<a class="btn btn-danger btn-sm" th:href="@{/gametime/videogiochi/delete/{id}(id=${videogioco.id})}">Elimina</a>						
+								<div th:if="${utente.admin == 0 || utente.admin == 1}">
+									<a class="btn btn-warning btn-sm" th:href="@{/gametime/videogiochi/update/{id}(id=${videogioco.id})}">Modifica</a>						
+									<a class="btn btn-danger btn-sm" th:href="@{/gametime/videogiochi/delete/{id}(id=${videogioco.id})}">Elimina</a>						
+								</div>
+								<div th:unless="${utente.admin == 0 || utente.admin == 1}">
+									<a >Aggiungi</a>
+								</div>
 							</td>
 						</tr>
 					</tbody>
