@@ -18,7 +18,13 @@
 					</div>
 					<div th:object="${utente}">
 						<a class="btn btn-info" th:href="@{/gametime/utenti/update/{id}(id=${utente.id})}">Visualizza il tuo account</a>	
-					</div>					
+					</div>		
+					<div th:if="${utente.admin == 2}">
+						<a class="btn btn-info" th:href="@{/gametime/tempi}">Controlla i tuoi tempi di gioco!</a>
+					</div>
+					<div th:unless="${utente.admin == 2}">						
+						<a class="btn btn-info" th:href="@{/gametime/tempi}">Controlla i tempi degli utenti</a>
+					</div>
 					<div>
 						<a class="btn btn-danger" th:href="@{/logout}">Logout</a>				
 					</div>

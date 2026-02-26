@@ -1,12 +1,15 @@
 package it.home.services;
 
-import java.util.Optional;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import it.home.models.TempoDiGioco;
 import it.home.repositories.TempoRepository;
 
+@Service
 public class TempoService {
 
 	@Autowired
@@ -18,12 +21,13 @@ public class TempoService {
 	@Autowired
 	private VideogiocoService serviceV;
 	
-	public Optional<TempoDiGioco> getTempo(int id) {
-		Optional<TempoDiGioco> time =  tRepository.findById(id);
-		if(time.isPresent()) {
-			time.get().setUtente(serviceU.getUtente(time.get().getUtente().getId()));
-			time.get().setVideogioco(serviceV.getVideogioco(time.get().getVideogioco().getId()));
+	public List<TempoDiGioco> getTempoByUser(int id) {
+		List<TempoDiGioco> time =  tRepository.findByUtente(id);
+		for(int i = 0; i < time.size(); i++) {
+			time.get(i).setUtente(serviceU.getUtente(time.get(i).getUtente().getId()));
+			time.get(i).setVideogioco(serviceV.getVideogioco(time.get(i).getVideogioco().getId()));
 		}
+		
 		return time;
 	}
 	

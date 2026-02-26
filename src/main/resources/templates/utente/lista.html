@@ -7,12 +7,10 @@
 			<h3 class="display-4 my-3">Utenti</h3>
 			
 			<div class="alert alert-warning" th:if="${utenti.size() == 0}">
-				<h5 class="alert-heading">La lista degli sviluppatori &egrave; vuota</h5>
-				<hr>
-				<a class="btn btn-primary" th:href="@{/gametime/utenti/insert}">Aggiungi un utente</a>
+				<h5 class="alert-heading">La lista degli utenti &egrave; vuota</h5>
+				
 			</div>
 			<div th:unless="${utenti.size() == 0}">
-				<a class="btn btn-primary" th:href="@{/gametime/utenti/insert}">Aggiungi un utente</a>
 				<table class="table table-striped">
 					<thead>
 						<tr>

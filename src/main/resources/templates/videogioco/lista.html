@@ -41,7 +41,7 @@
 									<a class="btn btn-danger btn-sm" th:href="@{/gametime/videogiochi/delete/{id}(id=${videogioco.id})}">Elimina</a>						
 								</div>
 								<div th:unless="${utente.admin == 0 || utente.admin == 1}">
-									<a >Aggiungi</a>
+									<a class="btn btn-warning btn-sm" th:href="@{}">Aggiungi alla tua lista</a>
 								</div>
 							</td>
 						</tr>
