@@ -10,6 +10,6 @@ import it.home.models.TempoDiGioco;
 @Repository
 public interface TempoRepository extends CrudRepository<TempoDiGioco, Integer> {
 	
-	public List<TempoDiGioco> findByUtente(int idUser);
+	public List<TempoDiGioco> findByUtenteId(int idUser);
 	
 }

@@ -5,14 +5,36 @@
 		<title>GameTime</title>
 	</head>
 	<body>
-		<div th:if="${lista == null}">
-				<div th:if="${utente.admin == 2}">
-					<h5 class="alert-heading">La lista dei tuoi &egrave; vuota</h5>
+		<div class="container">
+			<div th:if="${lista.size() == 0}">
+				<div class="alert alert-warning" th:if="${utente.admin == 2}">
+					<h5 class="alert-heading">La lista dei tuoi tempi &egrave; vuota</h5>
 					<a class="btn btn-warning" th:href="@{/gametime/videogiochi}">Aggiungi un gioco a cui hai giocato</a>
 				</div>
-				<div th:unless="${utente.admin == 2}">
+				<div class="alert alert-warning" th:unless="${utente.admin == 2}">
 					<h5 class="alert-heading">Nessun giocatore ha utilizzato il sito</h5>
 				</div>
+			</div>
+			<div th:unless="${lista.size() == 0}">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<td>Id</td>
+							<td>Utente</td>
+							<td>Videogioco</td>
+							<td>Tempo di gioco</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tempo : ${lista}">
+							<td th:text="${tempo.id}"></td>
+							<td th:text="${tempo.Utente.username}"></td>
+							<td th:text="${tempo.Videogioco.titolo}"></td>
+							<td th:text="${tempo.dateTime}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<script th:replace="~{template::bootstrap-script}"></script>
 	</body>

@@ -25,6 +25,7 @@ public class TempoController {
 	@Autowired
 	private UtentiService serviceU;
 	
+	
 	@GetMapping("/gametime/tempi")
 	public String list(@AuthenticationPrincipal UserDetails details, Model model ) {
 		Optional<Utente> u = serviceU.findByEmail(details.getUsername());
@@ -35,6 +36,7 @@ public class TempoController {
 			Iterable<TempoDiGioco> ite = service.getAll();
 			model.addAttribute("lista", ite);
 		}
+		model.addAttribute("utente", u.get());
 		return "tempo/lista";
 	}
 	

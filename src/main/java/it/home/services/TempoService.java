@@ -22,16 +22,16 @@ public class TempoService {
 	private VideogiocoService serviceV;
 	
 	public List<TempoDiGioco> getTempoByUser(int id) {
-		List<TempoDiGioco> time =  tRepository.findByUtente(id);
+		List<TempoDiGioco> time =  tRepository.findByUtenteId(id);
 		for(int i = 0; i < time.size(); i++) {
-			time.get(i).setUtente(serviceU.getUtente(time.get(i).getUtente().getId()));
+			time.get(i).setUtente(serviceU.getUtente(id));
 			time.get(i).setVideogioco(serviceV.getVideogioco(time.get(i).getVideogioco().getId()));
 		}
-		
 		return time;
 	}
 	
 	public Iterable<TempoDiGioco> getAll(){
+		
 		return tRepository.findAll();
 	}
 	
