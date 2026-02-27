@@ -1,7 +1,5 @@
 package it.home.controllers;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,12 +35,16 @@ public class UtenteController {
 	}
 	
 	//AuthenticationPrincipal serve per iniettare l'utente loggato nell'userdetails e tramite di esso prendo l'email e recupero l'utente
-	@GetMapping("/gametime/home")
-	public String home(@AuthenticationPrincipal UserDetails details, Model model) {
-		Optional<Utente> verifica = service.findByEmail(details.getUsername());
-		if(verifica.isPresent()) {
-			model.addAttribute("utente", verifica.get());			
+	@ModelAttribute("utente")
+	public Utente getUtente(@AuthenticationPrincipal UserDetails details) {
+		if(details != null) {
+			return service.findByEmail(details.getUsername()).get();
 		}
+		return null;
+	}	
+	
+	@GetMapping("/gametime/home")
+	public String home( Model model) {
 		return "home";
 	}
 	

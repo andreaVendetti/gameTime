@@ -1,15 +1,13 @@
 package it.home.controllers;
 
-
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import it.home.models.TempoDiGioco;
 import it.home.models.Utente;
@@ -21,29 +19,35 @@ public class TempoController {
 
 	@Autowired
 	private TempoService service;
-	
+
 	@Autowired
 	private UtentiService serviceU;
 	
-	
 	@GetMapping("/gametime/tempi")
 	public String list(@AuthenticationPrincipal UserDetails details, Model model ) {
-		Optional<Utente> u = serviceU.findByEmail(details.getUsername());
-		if(u.isPresent() && u.get().getAdmin() == 2) {
-			List<TempoDiGioco> list = service.getTempoByUser(u.get().getId());
-			model.addAttribute("lista", list);
-		} else if(u.isPresent() && u.get().getAdmin() != 2) {
-			Iterable<TempoDiGioco> ite = service.getAll();
-			model.addAttribute("lista", ite);
+		if(details == null) {
+			return "redirect:/login";
+		}		
+		Utente u = serviceU.findByEmail(details.getUsername()).get();
+		
+		if(u.getAdmin() == 2) {
+			model.addAttribute("lista", service.getTempoByUser(u.getId()));
+		} else {
+			model.addAttribute("lista", service.getAll());
 		}
-		model.addAttribute("utente", u.get());
 		return "tempo/lista";
 	}
 	
 	@GetMapping("/gametime/tempi/insert")
-	public String insert(@AuthenticationPrincipal UserDetails details, Model model) {
-		return null;
+	public String insert(Model model) {
+		model.addAttribute("tempo", new TempoDiGioco());
+		return "tempo/edit";
 	}
 	
+	@PostMapping("/gametime/tempi/save")
+	public String save(@ModelAttribute TempoDiGioco t) {
+		service.save(t);
+		return "redirect:/gametime/tempi";
+	}
 	
 }
