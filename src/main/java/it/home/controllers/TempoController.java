@@ -40,4 +40,10 @@ public class TempoController {
 		return "tempo/lista";
 	}
 	
+	@GetMapping("/gametime/tempi/insert")
+	public String insert(@AuthenticationPrincipal UserDetails details, Model model) {
+		return null;
+	}
+	
+	
 }
