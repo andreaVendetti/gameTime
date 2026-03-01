@@ -3,22 +3,23 @@
 	<head th:replace="~{template::bootstrap-head}">
 			<meta charset="UTF-8">
 			<title>GameTime</title>
-	</head>
-	
+	</head>	
 	<body>
 		<div class="container">
 			<form th:action="@{/gametime/tempi/save}" th:object="${tempo}" method="post">
 				<div class="mb-3">
-					<label class="form-label">Username</label>
-					<input th:field="${utente.username}" required>
+
+					<input type="hidden" th:field="*{utente.id}" th:value="${utente.id}" required>
 				</div>
 				<div class="mb-3">
 					<label class="form-label">Videogiochi</label>
-					<input th:field="${listaVideogiochi.titolo}" required>
+					<select class="form-control" th:field="*{videogioco.id}">
+					    <option th:each="game : ${listaVideogiochi}" th:value="${game.id}" th:text="${game.titolo}"></option>
+					</select>
 				</div>
 				<div class="mb-3">
 					<label class="form-label">Data</label>
-					<input th:type="datetime-local" th:field="*{dateTime}" required>
+					<input class="form-control" th:type="datetime-local" th:field="*{dateTime}" required>
 				</div>			
 				<button class="btn btn-primary" type="submit">Aggiungi!</button>
 			</form>
