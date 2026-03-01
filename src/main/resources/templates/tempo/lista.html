@@ -28,7 +28,9 @@
 					<tbody>
 						<tr th:each="tempo : ${lista}">
 							<td th:text="${tempo.id}"></td>
-							<td th:text="${tempo.utente.username}"></td>
+							<td th:object="${tempo.utente}">
+								<label th:text="*{username}"></label>
+							</td>
 							<td th:text="${tempo.videogioco.titolo}"></td>
 							<td th:text="${tempo.dateTime}"></td>
 						</tr>

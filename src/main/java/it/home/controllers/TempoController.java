@@ -33,7 +33,6 @@ public class TempoController {
 			return "redirect:/login";
 		}		
 		Utente u = serviceU.findByEmail(details.getUsername()).get();
-		System.out.println(u.getId());
 		if(u.getAdmin() == 2) {
 			model.addAttribute("lista", service.getTempoByUser(u.getId()));
 		} else {

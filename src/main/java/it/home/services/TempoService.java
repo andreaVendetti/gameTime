@@ -17,11 +17,12 @@ public class TempoService {
 	
 	public List<TempoDiGioco> getTempoByUser(int id) {
 		List<TempoDiGioco> time =  tRepository.findByUtenteId(id);
+		
+		
 		return time;
 	}
 	
 	public Iterable<TempoDiGioco> getAll(){
-		
 		return tRepository.findAll();
 	}
 	

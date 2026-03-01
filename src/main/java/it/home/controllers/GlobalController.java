@@ -26,7 +26,6 @@ public class GlobalController {
 	   @ModelAttribute("utente")
 	    public Utente getUtente(@AuthenticationPrincipal UserDetails details) {
 	        if(details != null) {
-	        	System.out.println("ciao");
 	            return service.findByEmail(details.getUsername()).get();
 	        }
 	        return null;
