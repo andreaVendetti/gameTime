@@ -28,8 +28,8 @@
 					<tbody>
 						<tr th:each="tempo : ${lista}">
 							<td th:text="${tempo.id}"></td>
-							<td th:text="${tempo.Utente.username}"></td>
-							<td th:text="${tempo.Videogioco.titolo}"></td>
+							<td th:text="${tempo.utente.username}"></td>
+							<td th:text="${tempo.videogioco.titolo}"></td>
 							<td th:text="${tempo.dateTime}"></td>
 						</tr>
 					</tbody>

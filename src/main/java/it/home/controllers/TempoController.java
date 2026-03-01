@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.home.models.TempoDiGioco;
 import it.home.models.Utente;
-import it.home.models.Videogioco;
 import it.home.services.TempoService;
 import it.home.services.UtentiService;
 import it.home.services.VideogiocoService;
@@ -34,7 +33,7 @@ public class TempoController {
 			return "redirect:/login";
 		}		
 		Utente u = serviceU.findByEmail(details.getUsername()).get();
-		System.out.println(u.getAdmin());
+		System.out.println(u.getId());
 		if(u.getAdmin() == 2) {
 			model.addAttribute("lista", service.getTempoByUser(u.getId()));
 		} else {
@@ -50,11 +49,10 @@ public class TempoController {
 	}
 	
 	@PostMapping("/gametime/tempi/save")
-	public String save(@ModelAttribute TempoDiGioco t) {
+	public String save(@ModelAttribute TempoDiGioco t, @AuthenticationPrincipal UserDetails det) {
 		
-		Videogioco v = serviceV.getVideogioco(t.getVideogioco().getId());
-		t.setVideogioco(v);
-		
+		t.setVideogioco(serviceV.getVideogioco(t.getVideogioco().getId()));
+		t.setUtente(serviceU.findByEmail(det.getUsername()).get());
 		service.save(t);
 		return "redirect:/gametime/tempi";
 	}

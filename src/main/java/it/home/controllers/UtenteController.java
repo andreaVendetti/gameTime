@@ -1,8 +1,6 @@
 package it.home.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,15 +31,6 @@ public class UtenteController {
 		model.addAttribute("utente", new Utente());
 		return "login";
 	}
-	
-	//AuthenticationPrincipal serve per iniettare l'utente loggato nell'userdetails e tramite di esso prendo l'email e recupero l'utente
-	@ModelAttribute("utente")
-	public Utente getUtente(@AuthenticationPrincipal UserDetails details) {
-		if(details != null) {
-			return service.findByEmail(details.getUsername()).get();
-		}
-		return null;
-	}	
 	
 	@GetMapping("/gametime/home")
 	public String home( Model model) {

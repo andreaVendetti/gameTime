@@ -21,10 +21,13 @@ public class GlobalController {
 	@Autowired
 	private VideogiocoService serviceV;
 	
+
+	//AuthenticationPrincipal serve per iniettare l'utente loggato nell'userdetails e tramite di esso prendo l'email e recupero l'utente
 	   @ModelAttribute("utente")
 	    public Utente getUtente(@AuthenticationPrincipal UserDetails details) {
 	        if(details != null) {
-	            return service.findByEmail(details.getUsername()).orElse(null);
+	        	System.out.println("ciao");
+	            return service.findByEmail(details.getUsername()).get();
 	        }
 	        return null;
 	    }

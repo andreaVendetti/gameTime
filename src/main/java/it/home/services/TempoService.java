@@ -15,18 +15,8 @@ public class TempoService {
 	@Autowired
 	private TempoRepository tRepository;
 	
-	@Autowired
-	private UtentiService serviceU;
-	
-	@Autowired
-	private VideogiocoService serviceV;
-	
 	public List<TempoDiGioco> getTempoByUser(int id) {
 		List<TempoDiGioco> time =  tRepository.findByUtenteId(id);
-		for(int i = 0; i < time.size(); i++) {
-			time.get(i).setUtente(serviceU.getUtente(id));
-			time.get(i).setVideogioco(serviceV.getVideogioco(time.get(i).getVideogioco().getId()));
-		}
 		return time;
 	}
 	
