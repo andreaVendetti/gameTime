@@ -22,7 +22,9 @@
 							<td>Id</td>
 							<td>Utente</td>
 							<td>Videogioco</td>
-							<td>Tempo di gioco</td>
+							<td>Inizio sessione di gioco</td>
+							<td>Fine sessione di gioco</td>
+							<td>Data sessione di gioco</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -32,7 +34,9 @@
 								<label th:text="*{username}"></label>
 							</td>
 							<td th:text="${tempo.videogioco.titolo}"></td>
-							<td th:text="${tempo.dateTime}"></td>
+							<td th:text="${tempo.inizioSessione}"></td>
+							<td th:text="${tempo.fineSessione}"></td>
+							<td th:text="${tempo.date}"></td>
 						</tr>
 					</tbody>
 				</table>

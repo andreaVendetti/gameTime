@@ -1,6 +1,7 @@
 package it.home.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -31,9 +32,31 @@ public class TempoDiGioco {
 	@JoinColumn(name = "videogioco", referencedColumnName = "id")
 	private Videogioco videogioco;
 
-	@Column(name = "tempo_di_gioco")
-	private LocalDateTime dateTime;
+	@Column(name = "data_sessione")
+	private LocalDate date;
 	
+	@Column(name = "inizio_sessione")
+	private LocalTime inizioSessione;
+	
+	@Column(name = "fine_sessione")
+	private LocalTime fineSessione;
+	
+	public LocalTime getInizioSessione() {
+		return inizioSessione;
+	}
+
+	public void setInizioSessione(LocalTime inizioSessione) {
+		this.inizioSessione = inizioSessione;
+	}
+
+	public LocalTime getFineSessione() {
+		return fineSessione;
+	}
+
+	public void setFineSessione(LocalTime fineSessione) {
+		this.fineSessione = fineSessione;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -58,12 +81,12 @@ public class TempoDiGioco {
 		this.videogioco = videogioco;
 	}
 
-	public LocalDateTime getDateTime() {
-		return dateTime;
+	public LocalDate getDate() {
+		return date;
 	}
 
-	public void setDateTime(LocalDateTime dateTime) {
-		this.dateTime = dateTime;
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 }
