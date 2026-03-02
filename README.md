@@ -59,11 +59,11 @@ Campi tipici:
 
         id_videogioco (FK)
 
-        ore_giocate
+        inizio_sessione
+
+        fine_sessione
 
         data_sessione
-
-        ore totali (per videogioco)
 
 Questa tabella rappresenta la relazione tra utenti e videogiochi e consente di tracciare le sessioni di gioco.
 
