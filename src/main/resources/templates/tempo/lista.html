@@ -25,6 +25,7 @@
 							<td>Inizio sessione di gioco</td>
 							<td>Fine sessione di gioco</td>
 							<td>Data sessione di gioco</td>
+							<td>Ore Totali Di Gioco</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,6 +38,7 @@
 							<td th:text="${tempo.inizioSessione}"></td>
 							<td th:text="${tempo.fineSessione}"></td>
 							<td th:text="${tempo.date}"></td>
+							<td th:text="${tempo.oreGiocate}" th:if="${tempo.oreGiocate == null}">In Corso..</td>
 						</tr>
 					</tbody>
 				</table>

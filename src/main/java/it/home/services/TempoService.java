@@ -17,9 +17,11 @@ public class TempoService {
 	
 	public List<TempoDiGioco> getTempoByUser(int id) {
 		List<TempoDiGioco> time =  tRepository.findByUtenteId(id);
-		
-		
 		return time;
+	}
+	
+	public TempoDiGioco getTempo(int id) {
+		return tRepository.findById(id).get();
 	}
 	
 	public Iterable<TempoDiGioco> getAll(){

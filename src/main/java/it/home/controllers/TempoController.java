@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.home.models.TempoDiGioco;
@@ -48,12 +49,20 @@ public class TempoController {
 	}
 	
 	@PostMapping("/gametime/tempi/save")
-	public String save(@ModelAttribute TempoDiGioco t, @AuthenticationPrincipal UserDetails det) {
-		
+	public String edit(@ModelAttribute TempoDiGioco t, @AuthenticationPrincipal UserDetails det) {
 		t.setVideogioco(serviceV.getVideogioco(t.getVideogioco().getId()));
 		t.setUtente(serviceU.findByEmail(det.getUsername()).get());
 		service.save(t);
 		return "redirect:/gametime/tempi";
+	}
+	
+	@PostMapping("/gametime/tempi/update/{id}")
+	public String edit(@PathVariable int idT, Model model) {
+		TempoDiGioco t = service.getTempo(idT);
+		t.setUtente(serviceU.getUtente(t.getUtente().getId()));
+		t.setVideogioco(serviceV.getVideogioco(t.getVideogioco().getId()));
+		model.addAttribute("tempo", t);
+		return "tempo/edit";
 	}
 	
 }

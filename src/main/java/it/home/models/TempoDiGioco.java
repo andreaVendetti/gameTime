@@ -41,6 +41,17 @@ public class TempoDiGioco {
 	@Column(name = "fine_sessione")
 	private LocalTime fineSessione;
 	
+	@Column(name = "tempo_di_gioco")
+	private LocalTime oreGiocate;
+	
+	public LocalTime getOreGiocate() {
+		return oreGiocate;
+	}
+
+	public void setOreGiocate(LocalTime oreGiocate) {
+		this.oreGiocate = oreGiocate;
+	}
+
 	public LocalTime getInizioSessione() {
 		return inizioSessione;
 	}
