@@ -44,6 +44,9 @@ public class TempoDiGioco {
 	@Column(name = "tempo_di_gioco")
 	private LocalTime oreGiocate;
 	
+	//Questa variabile serve per differenziare le partite in corso da quelle finite
+	private boolean inCorso;
+	
 	public LocalTime getOreGiocate() {
 		return oreGiocate;
 	}
@@ -98,6 +101,14 @@ public class TempoDiGioco {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	public boolean isInCorso() {
+		return inCorso;
+	}
+
+	public void setInCorso(boolean inCorso) {
+		this.inCorso = inCorso;
 	}
 
 }

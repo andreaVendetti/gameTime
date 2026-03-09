@@ -24,10 +24,11 @@
 				<div class="mb-3">
 					<label class="form-label">Fine Sessione</label>
 					<input class="form-control" th:type="time" th:field="*{fineSessione}">
-				</div>			
+				</div>
+				<input class="costum-control-input" type="checkbox" th:field="*{inCorso}" th:value="${true}">
 				<div class="mb-3">
 					<label class="form-label">Data</label>
-					<input class="form-control" th:type="date" th:field="*{date}" required>
+					<input class="form-control" th:type="date" th:field="*{date}">
 				</div>			
 				<button class="btn btn-primary" type="submit">Aggiungi!</button>
 			</form>

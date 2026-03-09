@@ -49,16 +49,22 @@ public class TempoController {
 	}
 	
 	@PostMapping("/gametime/tempi/save")
-	public String edit(@ModelAttribute TempoDiGioco t, @AuthenticationPrincipal UserDetails det) {
+	public String edit(@ModelAttribute TempoDiGioco t, @AuthenticationPrincipal UserDetails det, Model model) {
 		t.setVideogioco(serviceV.getVideogioco(t.getVideogioco().getId()));
 		t.setUtente(serviceU.findByEmail(det.getUsername()).get());
+		if(!t.isInCorso()) {
+			model.addAttribute("erroreSessione", "Se la sessione non è in corso devi aggiungere una fine!");
+			return "tempo/edit'";
+			//devo mettere il banner di errore
+		} 
 		service.save(t);
-		return "redirect:/gametime/tempi";
+		return "redirect:/gametime/tempi";			
 	}
 	
 	@PostMapping("/gametime/tempi/update/{id}")
 	public String edit(@PathVariable int idT, Model model) {
 		TempoDiGioco t = service.getTempo(idT);
+		//mi recupero gli utenti e videogiochi per visualizzare i nomi
 		t.setUtente(serviceU.getUtente(t.getUtente().getId()));
 		t.setVideogioco(serviceV.getVideogioco(t.getVideogioco().getId()));
 		model.addAttribute("tempo", t);
